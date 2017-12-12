@@ -85,6 +85,50 @@ if ($('.owl-carousel').length > 0) {
     }
 
 
+$('.example-fontawesome-o').each(function(){
+    var currentRating = $(this).data('current-rating');
+
+        $(this).find('.current-rating')
+            .find('span')
+            .html(currentRating);
+
+        $(this).find('.clear-rating').on('click', function(event) {
+            event.preventDefault();
+
+            $(this)
+                .barrating('clear');
+        });
+$(this).barrating({
+            theme: 'fontawesome-stars-o',
+            showSelectedRating: false,
+            initialRating: currentRating,
+            onSelect: function(value, text) {
+                if (!value) {
+                    $(this)
+                        .barrating('clear');
+                } else {
+                    $(this).find('.current-rating')
+                        .addClass('hidden');
+
+                    $(this).find('.your-rating')
+                        .removeClass('hidden')
+                        .find('span')
+                        .html(value);
+                }
+            },
+            onClear: function(value, text) {
+                $(this).find('.stars-example-fontawesome-o')
+                    .find('.current-rating')
+                    .removeClass('hidden')
+                    .end()
+                    .find('.your-rating')
+                    .addClass('hidden');
+            }
+        });
+});
+
+
+
 
 
 });
